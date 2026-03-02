@@ -29,5 +29,48 @@
       "score": 64
     }
   ],
-  "updatedAt": "2026-03-02T08:00:00Z"
+  "gantt": [
+    { "name": "Governance & Risk Framework", "progress": 92 },
+    { "name": "QC Pipeline Automation", "progress": 90 },
+    { "name": "Strategy Search Engine", "progress": 55 },
+    { "name": "Scoring & Review System", "progress": 35 }
+  ],
+  "agents": [
+    {
+      "name": "Emma",
+      "now": "Lifecycle governance and release gates",
+      "next": "Finalize DoD checklist and approval flow"
+    },
+    {
+      "name": "Anna",
+      "now": "Volatility-capture signal design",
+      "next": "Narrow parameter search space"
+    },
+    {
+      "name": "Lily",
+      "now": "Market regime labeling logic",
+      "next": "Output trade-permission policy"
+    },
+    {
+      "name": "Nina",
+      "now": "Execution cost baseline modeling",
+      "next": "Run spread-only vs spread+slippage comparison"
+    },
+    {
+      "name": "Sara",
+      "now": "Leverage and margin kill-switch rules",
+      "next": "Integrate drawdown-triggered deleveraging"
+    },
+    {
+      "name": "Mia",
+      "now": "Portfolio risk-budget allocation",
+      "next": "Draft correlation-aware reweighting"
+    },
+    {
+      "name": "Ella",
+      "now": "OOS and anti-overfitting validation",
+      "next": "Add walk-forward stability report"
+    }
+  ],
+  "updatedAt": "2026-03-02T16:05:00Z"
 }

@@ -81,6 +81,44 @@ th, td { text-align: left; padding: 10px; border-bottom: 1px solid #26314f; }
   height: 100%;
   background: linear-gradient(90deg, var(--accent), var(--ok));
 }
+.gantt-board {
+  display: grid;
+  gap: 10px;
+}
+.gantt-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.gantt-name {
+  color: var(--muted);
+  font-size: 13px;
+}
+.gantt-track {
+  background: #1f2a49;
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+.gantt-track > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #4f8cff, #45d483);
+}
+.agent-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+.agent-card {
+  background: #101733;
+  border: 1px solid #26314f;
+  border-radius: 10px;
+  padding: 10px;
+}
+.agent-card .name { font-weight: 700; margin-bottom: 6px; }
+.agent-card .line { color: var(--muted); font-size: 13px; margin: 3px 0; }
 .footer {
   text-align: center;
   color: var(--muted);
