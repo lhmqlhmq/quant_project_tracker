@@ -1,62 +1,86 @@
 {
   "metricsValues": [3, 12, 1.47, "58%"],
   "projects": [
-    { "name": "QC Pipeline", "stage": "MVP", "progress": 90, "owner": "Jason", "updatedAt": "2026-03-02", "strategy": "Volatility Capture", "score": 84 },
-    { "name": "Strategy Search", "stage": "Design", "progress": 55, "owner": "Jason", "updatedAt": "2026-03-02", "strategy": "Momentum Mix", "score": 72 },
-    { "name": "Scoring Engine", "stage": "Build", "progress": 35, "owner": "Jason", "updatedAt": "2026-03-01", "strategy": "Cross-Asset Ranking", "score": 64 }
+    { "name": "QC Pipeline", "nameZh": "QC 流水线", "stage": "MVP", "progress": 90, "owner": "Jason", "updatedAt": "2026-03-02", "strategy": "Volatility Capture", "score": 84 },
+    { "name": "Strategy Search", "nameZh": "策略搜索", "stage": "Design", "progress": 55, "owner": "Jason", "updatedAt": "2026-03-02", "strategy": "Momentum Mix", "score": 72 },
+    { "name": "Scoring Engine", "nameZh": "评分引擎", "stage": "Build", "progress": 35, "owner": "Jason", "updatedAt": "2026-03-01", "strategy": "Cross-Asset Ranking", "score": 64 }
   ],
   "gantt": [
-    { "name": "Governance & Risk Framework", "start": "2026-02-26", "end": "2026-03-05", "progress": 92, "status": "in_progress" },
-    { "name": "QC Pipeline Automation", "start": "2026-02-27", "end": "2026-03-06", "progress": 90, "status": "in_progress" },
-    { "name": "Strategy Search Engine", "start": "2026-03-02", "end": "2026-03-12", "progress": 55, "status": "in_progress" },
-    { "name": "Scoring & Review System", "start": "2026-03-03", "end": "2026-03-18", "progress": 35, "status": "risk" }
+    { "name": "Governance & Risk Framework", "nameZh": "治理与风控框架", "start": "2026-02-26", "end": "2026-03-05", "progress": 92, "status": "in_progress" },
+    { "name": "QC Pipeline Automation", "nameZh": "QC 流水线自动化", "start": "2026-02-27", "end": "2026-03-06", "progress": 90, "status": "in_progress" },
+    { "name": "Strategy Search Engine", "nameZh": "策略搜索引擎", "start": "2026-03-02", "end": "2026-03-12", "progress": 55, "status": "in_progress" },
+    { "name": "Scoring & Review System", "nameZh": "评分与审核系统", "start": "2026-03-03", "end": "2026-03-18", "progress": 35, "status": "risk" }
   ],
   "agents": [
     {
       "name": "Emma",
       "role": "Strategy Lifecycle & Release Orchestrator",
+      "roleZh": "策略流程与发布总控官",
       "now": "Lifecycle governance and release gates",
+      "nowZh": "生命周期治理与发布门禁",
       "next": "Finalize DoD checklist and approval flow",
-      "issue": "Approval gate definitions are not fully finalized"
+      "nextZh": "完成 DoD 清单与审批流程固化",
+      "issue": "Approval gate definitions are not fully finalized",
+      "issueZh": "审批门禁定义尚未完全固化"
     },
     {
       "name": "Anna",
       "role": "Volatility Signal Research & Strategy Design Lead",
+      "roleZh": "波动信号研究与策略设计官",
       "now": "Volatility-capture signal design",
-      "next": "Narrow parameter search space"
+      "nowZh": "波动捕捉信号设计",
+      "next": "Narrow parameter search space",
+      "nextZh": "收敛参数搜索空间"
     },
     {
       "name": "Lily",
       "role": "Market Regime Identification & Trade Permission Lead",
+      "roleZh": "市场状态识别与交易许可官",
       "now": "Market regime labeling logic",
+      "nowZh": "市场状态标签逻辑",
       "next": "Output trade-permission policy",
-      "issue": "Regime thresholds still need backtest confirmation"
+      "nextZh": "输出交易许可策略",
+      "issue": "Regime thresholds still need backtest confirmation",
+      "issueZh": "Regime 阈值仍需回测确认"
     },
     {
       "name": "Nina",
       "role": "Execution & Transaction Cost Modeling Lead",
+      "roleZh": "订单执行与交易成本建模官",
       "now": "Execution cost baseline modeling",
-      "next": "Run spread-only vs spread+slippage comparison"
+      "nowZh": "执行成本基线建模",
+      "next": "Run spread-only vs spread+slippage comparison",
+      "nextZh": "运行仅点差与点差+滑点对比"
     },
     {
       "name": "Sara",
       "role": "Leverage Control & Margin Risk Lead",
+      "roleZh": "杠杆控制与保证金风险管理官",
       "now": "Leverage and margin kill-switch rules",
-      "next": "Integrate drawdown-triggered deleveraging"
+      "nowZh": "杠杆与保证金熔断规则",
+      "next": "Integrate drawdown-triggered deleveraging",
+      "nextZh": "接入回撤触发降杠杆"
     },
     {
       "name": "Mia",
       "role": "Portfolio Allocation & Risk Budget Lead",
+      "roleZh": "多策略组合与风险预算分配官",
       "now": "Portfolio risk-budget allocation",
-      "next": "Draft correlation-aware reweighting"
+      "nowZh": "组合风险预算分配",
+      "next": "Draft correlation-aware reweighting",
+      "nextZh": "起草相关性感知再配权"
     },
     {
       "name": "Ella",
       "role": "Independent Validation & Anti-Overfitting Auditor",
+      "roleZh": "独立验证与反过拟合审计官",
       "now": "OOS and anti-overfitting validation",
+      "nowZh": "样本外与反过拟合验证",
       "next": "Add walk-forward stability report",
-      "issue": "Walk-forward sample window is not frozen yet"
+      "nextZh": "补充 walk-forward 稳定性报告",
+      "issue": "Walk-forward sample window is not frozen yet",
+      "issueZh": "Walk-forward 样本窗口尚未冻结"
     }
   ],
-  "updatedAt": "2026-03-02T16:20:00Z"
+  "updatedAt": "2026-03-02T16:24:00Z"
 }

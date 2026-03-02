@@ -117,7 +117,8 @@ function renderProjects() {
   const dict = t();
   tbody.innerHTML = (data.projects || []).map((p) => {
     const stageText = dict.stages[p.stage] || p.stage;
-    return `<tr><td>${p.name}</td><td>${stageText}</td><td><div>${p.progress}%</div><div class="progress"><span style="width:${p.progress}%"></span></div></td><td>${p.owner}</td><td>${fmtDate(p.updatedAt)}</td></tr>`;
+    const name = currentLang === "zh" ? (p.nameZh || p.name) : p.name;
+    return `<tr><td>${name}</td><td>${stageText}</td><td><div>${p.progress}%</div><div class="progress"><span style="width:${p.progress}%"></span></div></td><td>${p.owner}</td><td>${fmtDate(p.updatedAt)}</td></tr>`;
   }).join("");
 }
 
@@ -135,10 +136,11 @@ function renderGantt() {
     const left = ((s - min) / span) * 100;
     const width = Math.max(((e - s) / span) * 100, 2);
     const cls = g.status === "risk" ? "risk" : g.status === "blocked" ? "blocked" : "ok";
+    const name = currentLang === "zh" ? (g.nameZh || g.name) : g.name;
     return `
       <div class="gantt-row">
         <div class="gantt-meta">
-          <div class="gantt-name">${g.name}</div>
+          <div class="gantt-name">${name}</div>
           <div class="gantt-dates">${t().ganttStart}: ${fmtDate(g.start)} · ${t().ganttEnd}: ${fmtDate(g.end)}</div>
         </div>
         <div class="gantt-timeline">
@@ -151,14 +153,20 @@ function renderGantt() {
 function renderAgents() {
   const board = document.getElementById("agentBoard");
   const dict = t();
-  board.innerHTML = (data.agents || []).map((a) => `
-    <div class="agent-card ${a.issue ? "has-issue" : ""}">
+  board.innerHTML = (data.agents || []).map((a) => {
+    const role = currentLang === "zh" ? (a.roleZh || a.role) : (a.role || a.roleZh);
+    const now = currentLang === "zh" ? (a.nowZh || a.now) : (a.now || a.nowZh);
+    const next = currentLang === "zh" ? (a.nextZh || a.next) : (a.next || a.nextZh);
+    const issue = currentLang === "zh" ? (a.issueZh || a.issue) : (a.issue || a.issueZh);
+    return `
+    <div class="agent-card ${issue ? "has-issue" : ""}">
       <div class="name">${a.name}</div>
-      <div class="line"><strong>${dict.agentRole}:</strong> ${a.role || "-"}</div>
-      <div class="line"><strong>${dict.agentNow}:</strong> ${a.now}</div>
-      <div class="line"><strong>${dict.agentNext}:</strong> ${a.next}</div>
-      ${a.issue ? `<div class="line issue"><strong>${dict.agentIssue}:</strong> ${a.issue}</div>` : ""}
-    </div>`).join("");
+      <div class="line"><strong>${dict.agentRole}:</strong> ${role || "-"}</div>
+      <div class="line"><strong>${dict.agentNow}:</strong> ${now || "-"}</div>
+      <div class="line"><strong>${dict.agentNext}:</strong> ${next || "-"}</div>
+      ${issue ? `<div class="line issue"><strong>${dict.agentIssue}:</strong> ${issue}</div>` : ""}
+    </div>`;
+  }).join("");
 }
 
 function renderTodos() { document.getElementById("todoList").innerHTML = t().todos.map((item) => `<li>${item}</li>`).join(""); }
