@@ -1,76 +1,62 @@
 {
   "metricsValues": [3, 12, 1.47, "58%"],
   "projects": [
-    {
-      "name": "QC Pipeline",
-      "stage": "MVP",
-      "progress": 90,
-      "owner": "Jason",
-      "updatedAt": "2026-03-02",
-      "strategy": "Volatility Capture",
-      "score": 84
-    },
-    {
-      "name": "Strategy Search",
-      "stage": "Design",
-      "progress": 55,
-      "owner": "Jason",
-      "updatedAt": "2026-03-02",
-      "strategy": "Momentum Mix",
-      "score": 72
-    },
-    {
-      "name": "Scoring Engine",
-      "stage": "Build",
-      "progress": 35,
-      "owner": "Jason",
-      "updatedAt": "2026-03-01",
-      "strategy": "Cross-Asset Ranking",
-      "score": 64
-    }
+    { "name": "QC Pipeline", "stage": "MVP", "progress": 90, "owner": "Jason", "updatedAt": "2026-03-02", "strategy": "Volatility Capture", "score": 84 },
+    { "name": "Strategy Search", "stage": "Design", "progress": 55, "owner": "Jason", "updatedAt": "2026-03-02", "strategy": "Momentum Mix", "score": 72 },
+    { "name": "Scoring Engine", "stage": "Build", "progress": 35, "owner": "Jason", "updatedAt": "2026-03-01", "strategy": "Cross-Asset Ranking", "score": 64 }
   ],
   "gantt": [
-    { "name": "Governance & Risk Framework", "progress": 92 },
-    { "name": "QC Pipeline Automation", "progress": 90 },
-    { "name": "Strategy Search Engine", "progress": 55 },
-    { "name": "Scoring & Review System", "progress": 35 }
+    { "name": "Governance & Risk Framework", "start": "2026-02-26", "end": "2026-03-05", "progress": 92, "status": "in_progress" },
+    { "name": "QC Pipeline Automation", "start": "2026-02-27", "end": "2026-03-06", "progress": 90, "status": "in_progress" },
+    { "name": "Strategy Search Engine", "start": "2026-03-02", "end": "2026-03-12", "progress": 55, "status": "in_progress" },
+    { "name": "Scoring & Review System", "start": "2026-03-03", "end": "2026-03-18", "progress": 35, "status": "risk" }
   ],
   "agents": [
     {
       "name": "Emma",
+      "role": "策略流程与发布总控官",
       "now": "Lifecycle governance and release gates",
-      "next": "Finalize DoD checklist and approval flow"
+      "next": "Finalize DoD checklist and approval flow",
+      "issue": "审批门禁定义尚未完全固化"
     },
     {
       "name": "Anna",
+      "role": "波动信号研究与策略设计官",
       "now": "Volatility-capture signal design",
       "next": "Narrow parameter search space"
     },
     {
       "name": "Lily",
+      "role": "市场状态识别与交易许可官",
       "now": "Market regime labeling logic",
-      "next": "Output trade-permission policy"
+      "next": "Output trade-permission policy",
+      "issue": "Regime阈值仍缺回测确认"
     },
     {
       "name": "Nina",
+      "role": "订单执行与交易成本建模官",
       "now": "Execution cost baseline modeling",
       "next": "Run spread-only vs spread+slippage comparison"
     },
     {
       "name": "Sara",
+      "role": "杠杆控制与保证金风险管理官",
       "now": "Leverage and margin kill-switch rules",
       "next": "Integrate drawdown-triggered deleveraging"
     },
     {
       "name": "Mia",
+      "role": "多策略组合与风险预算分配官",
       "now": "Portfolio risk-budget allocation",
       "next": "Draft correlation-aware reweighting"
     },
     {
       "name": "Ella",
+      "role": "独立验证与反过拟合审计官",
       "now": "OOS and anti-overfitting validation",
-      "next": "Add walk-forward stability report"
+      "next": "Add walk-forward stability report",
+      "issue": "Walk-forward样本窗口还未冻结"
     }
   ],
-  "updatedAt": "2026-03-02T16:05:00Z"
+  "updatedAt": "2026-03-02T16:12:00Z"
 }

@@ -3,7 +3,7 @@ const i18n = {
     subtitle: "Project tracking and dashboard (MVP)",
     sectionMetrics: "Core Metrics",
     sectionProjects: "Project List",
-    sectionGantt: "Roadmap Gantt",
+    sectionGantt: "Roadmap Timeline (Gantt)",
     sectionAgents: "Agent Focus & Next Step",
     sectionTodos: "High-Priority Todos",
     thProject: "Project",
@@ -13,8 +13,12 @@ const i18n = {
     thUpdated: "Updated",
     metrics: ["Active Projects", "Backtests Today", "Avg Sharpe", "Win Rate"],
     stages: { MVP: "MVP", Design: "Design", Build: "Build" },
+    ganttStart: "Start",
+    ganttEnd: "ETA",
+    agentRole: "Role",
     agentNow: "Now",
     agentNext: "Next",
+    agentIssue: "Issue",
     todos: [
       "Define a unified scoring framework (return / drawdown / stability)",
       "Standardize backtest result output format (JSON + CSV)",
@@ -26,7 +30,7 @@ const i18n = {
     subtitle: "项目跟踪与仪表盘（MVP）",
     sectionMetrics: "核心指标",
     sectionProjects: "项目清单",
-    sectionGantt: "项目甘特概览",
+    sectionGantt: "项目甘特时间线",
     sectionAgents: "Agent 当前重点与下一步",
     sectionTodos: "高优先级待办",
     thProject: "项目",
@@ -36,8 +40,12 @@ const i18n = {
     thUpdated: "更新时间",
     metrics: ["活跃项目", "今日回测次数", "平均夏普", "胜率"],
     stages: { MVP: "MVP", Design: "设计", Build: "开发" },
+    ganttStart: "开始",
+    ganttEnd: "预计完成",
+    agentRole: "职务",
     agentNow: "当前",
     agentNext: "下一步",
+    agentIssue: "问题",
     todos: [
       "定义统一评分口径（收益 / 回撤 / 稳定性）",
       "标准化回测结果输出格式（JSON + CSV）",
@@ -55,23 +63,18 @@ const fallbackData = {
     { name: "Scoring Engine", stage: "Build", progress: 35, owner: "Jason", updatedAt: "2026-03-01" }
   ],
   gantt: [
-    { name: "Governance & Risk", progress: 92 },
-    { name: "QC Pipeline", progress: 90 },
-    { name: "Strategy Search", progress: 55 },
-    { name: "Scoring Engine", progress: 35 }
+    { name: "Governance & Risk Framework", start: "2026-02-26", end: "2026-03-05", progress: 92, status: "in_progress" },
+    { name: "QC Pipeline Automation", start: "2026-02-27", end: "2026-03-06", progress: 90, status: "in_progress" },
+    { name: "Strategy Search Engine", start: "2026-03-02", end: "2026-03-12", progress: 55, status: "in_progress" },
+    { name: "Scoring & Review System", start: "2026-03-03", end: "2026-03-18", progress: 35, status: "risk" }
   ],
-  agents: [
-    { name: "Emma", now: "Lifecycle gating", next: "Approve release checklist" },
-    { name: "Anna", now: "Vol signal space", next: "Narrow parameter grid" }
-  ]
+  agents: []
 };
 
 let data = { ...fallbackData };
 let currentLang = localStorage.getItem("lang") || "en";
 
-function t() {
-  return i18n[currentLang] || i18n.en;
-}
+function t() { return i18n[currentLang] || i18n.en; }
 
 async function loadData() {
   try {
@@ -82,6 +85,10 @@ async function loadData() {
   } catch (_) {
     data = { ...fallbackData };
   }
+}
+
+function fmtDate(d) {
+  return new Date(d).toLocaleDateString(t().locale, { year: "numeric", month: "short", day: "numeric" });
 }
 
 function applyStaticText() {
@@ -102,73 +109,65 @@ function applyStaticText() {
 
 function renderMetrics() {
   const grid = document.getElementById("metricsGrid");
-  const dict = t();
-  grid.innerHTML = dict.metrics
-    .map((label, idx) => `<div class="metric"><div class="label">${label}</div><div class="value">${data.metricsValues[idx] ?? "-"}</div></div>`)
-    .join("");
+  grid.innerHTML = t().metrics.map((label, idx) => `<div class="metric"><div class="label">${label}</div><div class="value">${data.metricsValues[idx] ?? "-"}</div></div>`).join("");
 }
 
 function renderProjects() {
   const tbody = document.getElementById("projectTable");
   const dict = t();
-  tbody.innerHTML = (data.projects || [])
-    .map((p) => {
-      const stageText = dict.stages[p.stage] || p.stage;
-      const dateText = new Date(p.updatedAt).toLocaleDateString(dict.locale, { year: "numeric", month: "short", day: "numeric" });
-      return `<tr><td>${p.name}</td><td>${stageText}</td><td><div>${p.progress}%</div><div class="progress"><span style="width:${p.progress}%"></span></div></td><td>${p.owner}</td><td>${dateText}</td></tr>`;
-    })
-    .join("");
+  tbody.innerHTML = (data.projects || []).map((p) => {
+    const stageText = dict.stages[p.stage] || p.stage;
+    return `<tr><td>${p.name}</td><td>${stageText}</td><td><div>${p.progress}%</div><div class="progress"><span style="width:${p.progress}%"></span></div></td><td>${p.owner}</td><td>${fmtDate(p.updatedAt)}</td></tr>`;
+  }).join("");
 }
 
 function renderGantt() {
   const board = document.getElementById("ganttBoard");
-  board.innerHTML = (data.gantt || [])
-    .map((g) => `<div class="gantt-row"><div class="gantt-name">${g.name}</div><div class="gantt-track"><span style="width:${g.progress}%"></span></div></div>`)
-    .join("");
+  const tasks = data.gantt || [];
+  if (!tasks.length) { board.innerHTML = "-"; return; }
+  const min = Math.min(...tasks.map((x) => new Date(x.start).getTime()));
+  const max = Math.max(...tasks.map((x) => new Date(x.end).getTime()));
+  const span = Math.max(max - min, 86400000);
+
+  board.innerHTML = tasks.map((g) => {
+    const s = new Date(g.start).getTime();
+    const e = new Date(g.end).getTime();
+    const left = ((s - min) / span) * 100;
+    const width = Math.max(((e - s) / span) * 100, 2);
+    const cls = g.status === "risk" ? "risk" : g.status === "blocked" ? "blocked" : "ok";
+    return `
+      <div class="gantt-row">
+        <div class="gantt-meta">
+          <div class="gantt-name">${g.name}</div>
+          <div class="gantt-dates">${t().ganttStart}: ${fmtDate(g.start)} · ${t().ganttEnd}: ${fmtDate(g.end)}</div>
+        </div>
+        <div class="gantt-timeline">
+          <div class="gantt-bar ${cls}" style="left:${left}%;width:${width}%">${g.progress}%</div>
+        </div>
+      </div>`;
+  }).join("");
 }
 
 function renderAgents() {
   const board = document.getElementById("agentBoard");
   const dict = t();
-  board.innerHTML = (data.agents || [])
-    .map((a) => `<div class="agent-card"><div class="name">${a.name}</div><div class="line">${dict.agentNow}: ${a.now}</div><div class="line">${dict.agentNext}: ${a.next}</div></div>`)
-    .join("");
+  board.innerHTML = (data.agents || []).map((a) => `
+    <div class="agent-card ${a.issue ? "has-issue" : ""}">
+      <div class="name">${a.name}</div>
+      <div class="line"><strong>${dict.agentRole}:</strong> ${a.role || "-"}</div>
+      <div class="line"><strong>${dict.agentNow}:</strong> ${a.now}</div>
+      <div class="line"><strong>${dict.agentNext}:</strong> ${a.next}</div>
+      ${a.issue ? `<div class="line issue"><strong>${dict.agentIssue}:</strong> ${a.issue}</div>` : ""}
+    </div>`).join("");
 }
 
-function renderTodos() {
-  document.getElementById("todoList").innerHTML = t().todos.map((item) => `<li>${item}</li>`).join("");
-}
-
-function renderAll() {
-  applyStaticText();
-  renderMetrics();
-  renderProjects();
-  renderGantt();
-  renderAgents();
-  renderTodos();
-}
+function renderTodos() { document.getElementById("todoList").innerHTML = t().todos.map((item) => `<li>${item}</li>`).join(""); }
+function renderAll() { applyStaticText(); renderMetrics(); renderProjects(); renderGantt(); renderAgents(); renderTodos(); }
 
 const btnEn = document.getElementById("btnEn");
 const btnZh = document.getElementById("btnZh");
-function updateLangButtons() {
-  btnEn.classList.toggle("active", currentLang === "en");
-  btnZh.classList.toggle("active", currentLang === "zh");
-}
-btnEn.addEventListener("click", () => {
-  currentLang = "en";
-  localStorage.setItem("lang", currentLang);
-  renderAll();
-  updateLangButtons();
-});
-btnZh.addEventListener("click", () => {
-  currentLang = "zh";
-  localStorage.setItem("lang", currentLang);
-  renderAll();
-  updateLangButtons();
-});
+function updateLangButtons() { btnEn.classList.toggle("active", currentLang === "en"); btnZh.classList.toggle("active", currentLang === "zh"); }
+btnEn.addEventListener("click", () => { currentLang = "en"; localStorage.setItem("lang", currentLang); renderAll(); updateLangButtons(); });
+btnZh.addEventListener("click", () => { currentLang = "zh"; localStorage.setItem("lang", currentLang); renderAll(); updateLangButtons(); });
 
-(async function init() {
-  await loadData();
-  renderAll();
-  updateLangButtons();
-})();
+(async function init() { await loadData(); renderAll(); updateLangButtons(); })();
