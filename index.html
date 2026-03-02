@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quant Project Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Quant Project Tracker</h1>
+      <p>项目跟踪与 Dashboard（MVP）</p>
+    </header>
+
+    <main class="container">
+      <section class="card metrics">
+        <h2>核心指标</h2>
+        <div id="metricsGrid" class="grid"></div>
+      </section>
+
+      <section class="card">
+        <h2>项目清单</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>项目</th>
+              <th>阶段</th>
+              <th>进度</th>
+              <th>负责人</th>
+              <th>更新时间</th>
+            </tr>
+          </thead>
+          <tbody id="projectTable"></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>待办（高优先）</h2>
+        <ul id="todoList"></ul>
+      </section>
+    </main>
+
+    <footer class="footer">v0.1 · static MVP</footer>
+    <script src="app.js"></script>
+  </body>
+</html>
