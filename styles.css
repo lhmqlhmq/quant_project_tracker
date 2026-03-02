@@ -27,18 +27,20 @@ body {
 .topbar h1 { margin: 0; font-size: 28px; }
 .topbar p { margin: 8px 0 0; color: var(--muted); }
 .lang-switch {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 13px;
+  display: inline-flex;
+  gap: 8px;
 }
-.lang-switch select {
+.lang-btn {
   background: #101733;
   color: var(--text);
   border: 1px solid #26314f;
   border-radius: 8px;
   padding: 6px 10px;
+  cursor: pointer;
+}
+.lang-btn.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(69,195,255,0.25) inset;
 }
 .container {
   max-width: 1000px;

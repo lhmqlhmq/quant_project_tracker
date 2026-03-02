@@ -122,12 +122,27 @@ function renderAll() {
   renderTodos();
 }
 
-const langSelect = document.getElementById("langSelect");
-langSelect.value = currentLang;
-langSelect.addEventListener("change", (e) => {
-  currentLang = e.target.value;
+const btnEn = document.getElementById("btnEn");
+const btnZh = document.getElementById("btnZh");
+
+function updateLangButtons() {
+  btnEn.classList.toggle("active", currentLang === "en");
+  btnZh.classList.toggle("active", currentLang === "zh");
+}
+
+btnEn.addEventListener("click", () => {
+  currentLang = "en";
   localStorage.setItem("lang", currentLang);
   renderAll();
+  updateLangButtons();
+});
+
+btnZh.addEventListener("click", () => {
+  currentLang = "zh";
+  localStorage.setItem("lang", currentLang);
+  renderAll();
+  updateLangButtons();
 });
 
 renderAll();
+updateLangButtons();
