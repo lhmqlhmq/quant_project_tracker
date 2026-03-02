@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,25 +9,25 @@
   <body>
     <header class="topbar">
       <h1>Quant Project Tracker</h1>
-      <p>项目跟踪与 Dashboard（MVP）</p>
+      <p>Project tracking and dashboard (MVP)</p>
     </header>
 
     <main class="container">
       <section class="card metrics">
-        <h2>核心指标</h2>
+        <h2>Core Metrics</h2>
         <div id="metricsGrid" class="grid"></div>
       </section>
 
       <section class="card">
-        <h2>项目清单</h2>
+        <h2>Project List</h2>
         <table>
           <thead>
             <tr>
-              <th>项目</th>
-              <th>阶段</th>
-              <th>进度</th>
-              <th>负责人</th>
-              <th>更新时间</th>
+              <th>Project</th>
+              <th>Stage</th>
+              <th>Progress</th>
+              <th>Owner</th>
+              <th>Updated</th>
             </tr>
           </thead>
           <tbody id="projectTable"></tbody>
@@ -35,7 +35,7 @@
       </section>
 
       <section class="card">
-        <h2>待办（高优先）</h2>
+        <h2>High-Priority Todos</h2>
         <ul id="todoList"></ul>
       </section>
     </main>

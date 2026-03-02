@@ -11,9 +11,9 @@ const data = {
     { name: "Scoring Engine", stage: "Build", progress: 35, owner: "Jason", updatedAt: "2026-03-01" }
   ],
   todos: [
-    "定义统一评分口径（收益/回撤/稳定性）",
-    "固化回测结果落盘格式（JSON + CSV）",
-    "补齐 Dashboard 数据更新时间戳"
+    "Define a unified scoring framework (return / drawdown / stability)",
+    "Standardize backtest result output format (JSON + CSV)",
+    "Add data freshness timestamp to the dashboard"
   ]
 };
 
