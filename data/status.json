@@ -1,0 +1,33 @@
+{
+  "metricsValues": [3, 12, 1.47, "58%"],
+  "projects": [
+    {
+      "name": "QC Pipeline",
+      "stage": "MVP",
+      "progress": 90,
+      "owner": "Jason",
+      "updatedAt": "2026-03-02",
+      "strategy": "Volatility Capture",
+      "score": 84
+    },
+    {
+      "name": "Strategy Search",
+      "stage": "Design",
+      "progress": 55,
+      "owner": "Jason",
+      "updatedAt": "2026-03-02",
+      "strategy": "Momentum Mix",
+      "score": 72
+    },
+    {
+      "name": "Scoring Engine",
+      "stage": "Build",
+      "progress": 35,
+      "owner": "Jason",
+      "updatedAt": "2026-03-01",
+      "strategy": "Cross-Asset Ranking",
+      "score": 64
+    }
+  ],
+  "updatedAt": "2026-03-02T08:00:00Z"
+}

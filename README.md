@@ -19,8 +19,12 @@ python3 -m http.server 8080
 # then open http://localhost:8080/projects/tracker-web/
 ```
 
+## Data link (for quant workflow)
+- Dashboard data source: `data/status.json`
+- Tracker web reads: `../../data/status.json`
+- You can update this JSON from your quant pipeline to refresh project status.
+
 ## Next planned features
-- Data source from JSON/API (instead of hardcoded JS)
 - Strategy score breakdown (return, drawdown, stability)
 - Backtest history timeline
 - Filters: strategy family, date range, market regime

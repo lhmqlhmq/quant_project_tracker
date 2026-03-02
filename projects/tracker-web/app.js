@@ -39,7 +39,7 @@ const i18n = {
   }
 };
 
-const data = {
+const fallbackData = {
   metricsValues: [3, 12, 1.47, "58%"],
   projects: [
     { name: "QC Pipeline", stage: "MVP", progress: 90, owner: "Jason", updatedAt: "2026-03-02" },
@@ -48,10 +48,24 @@ const data = {
   ]
 };
 
+let data = { ...fallbackData };
 let currentLang = localStorage.getItem("lang") || "en";
 
 function t() {
   return i18n[currentLang] || i18n.en;
+}
+
+async function loadData() {
+  try {
+    const res = await fetch("../../data/status.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    if (json?.projects && json?.metricsValues) {
+      data = json;
+    }
+  } catch (_) {
+    data = { ...fallbackData };
+  }
 }
 
 function applyStaticText() {
@@ -76,7 +90,7 @@ function renderMetrics() {
       (label, idx) => `
     <div class="metric">
       <div class="label">${label}</div>
-      <div class="value">${data.metricsValues[idx]}</div>
+      <div class="value">${data.metricsValues[idx] ?? "-"}</div>
     </div>
   `
     )
@@ -86,7 +100,7 @@ function renderMetrics() {
 function renderProjects() {
   const tbody = document.getElementById("projectTable");
   const dict = t();
-  tbody.innerHTML = data.projects
+  tbody.innerHTML = (data.projects || [])
     .map((p) => {
       const stageText = dict.stages[p.stage] || p.stage;
       const dateText = new Date(p.updatedAt).toLocaleDateString(dict.locale, {
@@ -144,5 +158,8 @@ btnZh.addEventListener("click", () => {
   updateLangButtons();
 });
 
-renderAll();
-updateLangButtons();
+(async function init() {
+  await loadData();
+  renderAll();
+  updateLangButtons();
+})();
