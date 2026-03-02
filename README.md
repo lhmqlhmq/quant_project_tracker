@@ -2,6 +2,10 @@
 
 Project Tracker + Dashboard MVP for quant research workflow.
 
+## Execution policy
+- Agent coding runtime: **Codex only**
+- ClaudeCode path: disabled for this project
+
 ## Current MVP (v0.2)
 - Bilingual static dashboard (EN / 中文)
 - Core metrics cards
