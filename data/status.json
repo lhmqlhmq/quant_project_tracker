@@ -14,49 +14,49 @@
   "agents": [
     {
       "name": "Emma",
-      "role": "策略流程与发布总控官",
+      "role": "Strategy Lifecycle & Release Orchestrator",
       "now": "Lifecycle governance and release gates",
       "next": "Finalize DoD checklist and approval flow",
-      "issue": "审批门禁定义尚未完全固化"
+      "issue": "Approval gate definitions are not fully finalized"
     },
     {
       "name": "Anna",
-      "role": "波动信号研究与策略设计官",
+      "role": "Volatility Signal Research & Strategy Design Lead",
       "now": "Volatility-capture signal design",
       "next": "Narrow parameter search space"
     },
     {
       "name": "Lily",
-      "role": "市场状态识别与交易许可官",
+      "role": "Market Regime Identification & Trade Permission Lead",
       "now": "Market regime labeling logic",
       "next": "Output trade-permission policy",
-      "issue": "Regime阈值仍缺回测确认"
+      "issue": "Regime thresholds still need backtest confirmation"
     },
     {
       "name": "Nina",
-      "role": "订单执行与交易成本建模官",
+      "role": "Execution & Transaction Cost Modeling Lead",
       "now": "Execution cost baseline modeling",
       "next": "Run spread-only vs spread+slippage comparison"
     },
     {
       "name": "Sara",
-      "role": "杠杆控制与保证金风险管理官",
+      "role": "Leverage Control & Margin Risk Lead",
       "now": "Leverage and margin kill-switch rules",
       "next": "Integrate drawdown-triggered deleveraging"
     },
     {
       "name": "Mia",
-      "role": "多策略组合与风险预算分配官",
+      "role": "Portfolio Allocation & Risk Budget Lead",
       "now": "Portfolio risk-budget allocation",
       "next": "Draft correlation-aware reweighting"
     },
     {
       "name": "Ella",
-      "role": "独立验证与反过拟合审计官",
+      "role": "Independent Validation & Anti-Overfitting Auditor",
       "now": "OOS and anti-overfitting validation",
       "next": "Add walk-forward stability report",
-      "issue": "Walk-forward样本窗口还未冻结"
+      "issue": "Walk-forward sample window is not frozen yet"
     }
   ],
-  "updatedAt": "2026-03-02T16:12:00Z"
+  "updatedAt": "2026-03-02T16:20:00Z"
 }
