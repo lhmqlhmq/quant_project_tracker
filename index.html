@@ -8,26 +8,37 @@
   </head>
   <body>
     <header class="topbar">
-      <h1>Quant Project Tracker</h1>
-      <p>Project tracking and dashboard (MVP)</p>
+      <div class="topbar-row">
+        <div>
+          <h1>Quant Project Tracker</h1>
+          <p id="subtitle">Project tracking and dashboard (MVP)</p>
+        </div>
+        <div class="lang-switch">
+          <label for="langSelect">Language</label>
+          <select id="langSelect" aria-label="Language selector">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+          </select>
+        </div>
+      </div>
     </header>
 
     <main class="container">
       <section class="card metrics">
-        <h2>Core Metrics</h2>
+        <h2 id="sectionMetrics">Core Metrics</h2>
         <div id="metricsGrid" class="grid"></div>
       </section>
 
       <section class="card">
-        <h2>Project List</h2>
+        <h2 id="sectionProjects">Project List</h2>
         <table>
           <thead>
             <tr>
-              <th>Project</th>
-              <th>Stage</th>
-              <th>Progress</th>
-              <th>Owner</th>
-              <th>Updated</th>
+              <th id="thProject">Project</th>
+              <th id="thStage">Stage</th>
+              <th id="thProgress">Progress</th>
+              <th id="thOwner">Owner</th>
+              <th id="thUpdated">Updated</th>
             </tr>
           </thead>
           <tbody id="projectTable"></tbody>
@@ -35,12 +46,12 @@
       </section>
 
       <section class="card">
-        <h2>High-Priority Todos</h2>
+        <h2 id="sectionTodos">High-Priority Todos</h2>
         <ul id="todoList"></ul>
       </section>
     </main>
 
-    <footer class="footer">v0.1 · static MVP</footer>
+    <footer class="footer">v0.2 · bilingual MVP</footer>
     <script src="app.js"></script>
   </body>
 </html>
