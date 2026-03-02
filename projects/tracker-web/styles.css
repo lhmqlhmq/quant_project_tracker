@@ -29,18 +29,26 @@ body {
 .lang-switch {
   display: inline-flex;
   gap: 8px;
+  background: #0f1630;
+  border: 1px solid #2e3b63;
+  border-radius: 10px;
+  padding: 4px;
 }
 .lang-btn {
+  min-width: 56px;
   background: #101733;
-  color: var(--text);
-  border: 1px solid #26314f;
+  color: #f3f7ff;
+  border: 1px solid #31406b;
   border-radius: 8px;
-  padding: 6px 10px;
+  padding: 7px 12px;
   cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
 }
 .lang-btn.active {
+  background: #1a2a52;
   border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(69,195,255,0.25) inset;
+  box-shadow: 0 0 0 1px rgba(69,195,255,0.35) inset;
 }
 .container {
   max-width: 1000px;
