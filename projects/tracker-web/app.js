@@ -3,6 +3,8 @@ const i18n = {
     subtitle: "Project tracking and dashboard (MVP)",
     sectionMetrics: "Core Metrics",
     sectionProjects: "Project List",
+    sectionReleased: "Released",
+    sectionInProgress: "In Progress",
     sectionGantt: "Roadmap Timeline (Gantt)",
     sectionAgents: "Agent Focus & Next Step",
     sectionTodos: "High-Priority Todos",
@@ -32,6 +34,8 @@ const i18n = {
     subtitle: "项目跟踪与仪表盘（MVP）",
     sectionMetrics: "核心指标",
     sectionProjects: "项目清单",
+    sectionReleased: "已上线",
+    sectionInProgress: "开发中",
     sectionGantt: "项目甘特时间线",
     sectionAgents: "Agent 当前重点与下一步",
     sectionTodos: "高优先级待办",
@@ -73,7 +77,17 @@ const fallbackData = {
     { name: "Scoring & Review System", start: "2026-03-03", end: "2026-03-18", progress: 35, status: "risk" }
   ],
   agents: [],
-  needConfirm: []
+  needConfirm: [],
+  releasedFeatures: [
+    { en: "Bilingual switch (EN/中文)", zh: "中英文切换（EN/中文）" },
+    { en: "Timeline Gantt with ETA", zh: "带预计完成时间的甘特时间线" },
+    { en: "Agent role + issue highlight", zh: "Agent 职务与问题高亮" },
+    { en: "Last updated date in top bar", zh: "顶部最近更新日期" }
+  ],
+  inProgressFeatures: [
+    { en: "Backtest return band (P75/P25 + median)", zh: "回测收益率区间图（P75/P25 + 中线）" },
+    { en: "Pixel-agents runtime integration", zh: "Pixel-agents 运行时联动" }
+  ]
 };
 
 let data = { ...fallbackData };
@@ -102,6 +116,8 @@ function applyStaticText() {
   document.getElementById("subtitle").textContent = dict.subtitle;
   document.getElementById("sectionMetrics").textContent = dict.sectionMetrics;
   document.getElementById("sectionProjects").textContent = dict.sectionProjects;
+  document.getElementById("sectionReleased").textContent = dict.sectionReleased;
+  document.getElementById("sectionInProgress").textContent = dict.sectionInProgress;
   document.getElementById("sectionGantt").textContent = dict.sectionGantt;
   document.getElementById("sectionAgents").textContent = dict.sectionAgents;
   document.getElementById("sectionTodos").textContent = dict.sectionTodos;
@@ -188,8 +204,17 @@ function renderNeedConfirm() {
   list.innerHTML = items.map((x) => `<li>${currentLang === "zh" ? (x.zh || x.en || x) : (x.en || x.zh || x)}</li>`).join("");
 }
 
+function renderDeliveryBoards() {
+  const released = document.getElementById("releasedList");
+  const progress = document.getElementById("inProgressList");
+  const r = data.releasedFeatures || [];
+  const p = data.inProgressFeatures || [];
+  released.innerHTML = r.map((x) => `<li>${currentLang === "zh" ? (x.zh || x.en || x) : (x.en || x.zh || x)}</li>`).join("");
+  progress.innerHTML = p.map((x) => `<li>${currentLang === "zh" ? (x.zh || x.en || x) : (x.en || x.zh || x)}</li>`).join("");
+}
+
 function renderTodos() { document.getElementById("todoList").innerHTML = t().todos.map((item) => `<li>${item}</li>`).join(""); }
-function renderAll() { applyStaticText(); renderMetrics(); renderProjects(); renderNeedConfirm(); renderGantt(); renderAgents(); renderTodos(); }
+function renderAll() { applyStaticText(); renderMetrics(); renderDeliveryBoards(); renderProjects(); renderNeedConfirm(); renderGantt(); renderAgents(); renderTodos(); }
 
 const btnEn = document.getElementById("btnEn");
 const btnZh = document.getElementById("btnZh");

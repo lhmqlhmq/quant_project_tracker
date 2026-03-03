@@ -77,12 +77,25 @@ body {
 }
 .metric .label { color: var(--muted); font-size: 12px; }
 .metric .value { font-size: 24px; font-weight: 700; margin-top: 4px; }
+.delivery-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.delivery-split ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+.delivery-split li { margin: 6px 0; }
+
 .projects-split {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 16px;
 }
 @media (max-width: 900px) {
+  .delivery-split { grid-template-columns: 1fr; }
   .projects-split { grid-template-columns: 1fr; }
 }
 .projects-side {

@@ -142,6 +142,34 @@
       "issueZh": "Walk-forward 样本窗口尚未冻结"
     }
   ],
-  "updatedAt": "2026-03-03T12:03:38Z",
-  "needConfirm": []
+  "updatedAt": "2026-03-03T22:23:23Z",
+  "needConfirm": [],
+  "releasedFeatures": [
+    {
+      "en": "Bilingual switch (EN/中文)",
+      "zh": "中英文切换（EN/中文）"
+    },
+    {
+      "en": "Timeline Gantt with ETA",
+      "zh": "带预计完成时间的甘特时间线"
+    },
+    {
+      "en": "Agent role + issue highlight",
+      "zh": "Agent 职务与问题高亮"
+    },
+    {
+      "en": "Last updated date in top bar",
+      "zh": "顶部最近更新日期"
+    }
+  ],
+  "inProgressFeatures": [
+    {
+      "en": "Backtest return band (P75/P25 + median)",
+      "zh": "回测收益率区间图（P75/P25 + 中线）"
+    },
+    {
+      "en": "Pixel-agents runtime integration",
+      "zh": "Pixel-agents 运行时联动"
+    }
+  ]
 }
