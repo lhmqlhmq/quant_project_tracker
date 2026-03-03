@@ -26,6 +26,7 @@ body {
 }
 .topbar h1 { margin: 0; font-size: 28px; }
 .topbar p { margin: 8px 0 0; color: var(--muted); }
+.last-updated { font-size: 12px; opacity: 0.95; }
 .lang-switch {
   display: inline-flex;
   gap: 8px;
@@ -76,6 +77,31 @@ body {
 }
 .metric .label { color: var(--muted); font-size: 12px; }
 .metric .value { font-size: 24px; font-weight: 700; margin-top: 4px; }
+.projects-split {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .projects-split { grid-template-columns: 1fr; }
+}
+.projects-side {
+  background: #101733;
+  border: 1px solid #26314f;
+  border-radius: 10px;
+  padding: 12px;
+}
+.projects-side h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+.projects-side ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+.projects-side li { margin: 8px 0; }
+
 table { width: 100%; border-collapse: collapse; }
 th, td { text-align: left; padding: 10px; border-bottom: 1px solid #26314f; }
 .progress {

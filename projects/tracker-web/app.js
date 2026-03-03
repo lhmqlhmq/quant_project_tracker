@@ -6,6 +6,8 @@ const i18n = {
     sectionGantt: "Roadmap Timeline (Gantt)",
     sectionAgents: "Agent Focus & Next Step",
     sectionTodos: "High-Priority Todos",
+    sectionNeedConfirm: "Items Requiring Jason's Confirmation",
+    lastUpdated: "Last updated",
     thProject: "Project",
     thStage: "Stage",
     thProgress: "Progress",
@@ -33,6 +35,8 @@ const i18n = {
     sectionGantt: "项目甘特时间线",
     sectionAgents: "Agent 当前重点与下一步",
     sectionTodos: "高优先级待办",
+    sectionNeedConfirm: "需 Jason 确认事项",
+    lastUpdated: "最近更新",
     thProject: "项目",
     thStage: "阶段",
     thProgress: "进度",
@@ -68,7 +72,8 @@ const fallbackData = {
     { name: "Strategy Search Engine", start: "2026-03-02", end: "2026-03-12", progress: 55, status: "in_progress" },
     { name: "Scoring & Review System", start: "2026-03-03", end: "2026-03-18", progress: 35, status: "risk" }
   ],
-  agents: []
+  agents: [],
+  needConfirm: []
 };
 
 let data = { ...fallbackData };
@@ -100,11 +105,15 @@ function applyStaticText() {
   document.getElementById("sectionGantt").textContent = dict.sectionGantt;
   document.getElementById("sectionAgents").textContent = dict.sectionAgents;
   document.getElementById("sectionTodos").textContent = dict.sectionTodos;
+  document.getElementById("sectionNeedConfirm").textContent = dict.sectionNeedConfirm;
   document.getElementById("thProject").textContent = dict.thProject;
   document.getElementById("thStage").textContent = dict.thStage;
   document.getElementById("thProgress").textContent = dict.thProgress;
   document.getElementById("thOwner").textContent = dict.thOwner;
   document.getElementById("thUpdated").textContent = dict.thUpdated;
+
+  const lu = data.updatedAt ? fmtDate(data.updatedAt) : "-";
+  document.getElementById("lastUpdated").textContent = `${dict.lastUpdated}: ${lu}`;
 }
 
 function renderMetrics() {
@@ -169,8 +178,18 @@ function renderAgents() {
   }).join("");
 }
 
+function renderNeedConfirm() {
+  const list = document.getElementById("needConfirmList");
+  const items = data.needConfirm || [];
+  if (!items.length) {
+    list.innerHTML = "";
+    return;
+  }
+  list.innerHTML = items.map((x) => `<li>${currentLang === "zh" ? (x.zh || x.en || x) : (x.en || x.zh || x)}</li>`).join("");
+}
+
 function renderTodos() { document.getElementById("todoList").innerHTML = t().todos.map((item) => `<li>${item}</li>`).join(""); }
-function renderAll() { applyStaticText(); renderMetrics(); renderProjects(); renderGantt(); renderAgents(); renderTodos(); }
+function renderAll() { applyStaticText(); renderMetrics(); renderProjects(); renderNeedConfirm(); renderGantt(); renderAgents(); renderTodos(); }
 
 const btnEn = document.getElementById("btnEn");
 const btnZh = document.getElementById("btnZh");

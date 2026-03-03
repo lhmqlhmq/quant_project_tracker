@@ -1,15 +1,75 @@
 {
-  "metricsValues": [3, 12, 1.47, "58%"],
+  "metricsValues": [
+    3,
+    12,
+    1.47,
+    "58%"
+  ],
   "projects": [
-    { "name": "QC Pipeline", "nameZh": "QC 流水线", "stage": "MVP", "progress": 90, "owner": "Jason", "updatedAt": "2026-03-02", "strategy": "Volatility Capture", "score": 84 },
-    { "name": "Strategy Search", "nameZh": "策略搜索", "stage": "Design", "progress": 55, "owner": "Jason", "updatedAt": "2026-03-02", "strategy": "Momentum Mix", "score": 72 },
-    { "name": "Scoring Engine", "nameZh": "评分引擎", "stage": "Build", "progress": 35, "owner": "Jason", "updatedAt": "2026-03-01", "strategy": "Cross-Asset Ranking", "score": 64 }
+    {
+      "name": "QC Pipeline",
+      "nameZh": "QC 流水线",
+      "stage": "MVP",
+      "progress": 90,
+      "owner": "Jason",
+      "updatedAt": "2026-03-02",
+      "strategy": "Volatility Capture",
+      "score": 84
+    },
+    {
+      "name": "Strategy Search",
+      "nameZh": "策略搜索",
+      "stage": "Design",
+      "progress": 55,
+      "owner": "Jason",
+      "updatedAt": "2026-03-02",
+      "strategy": "Momentum Mix",
+      "score": 72
+    },
+    {
+      "name": "Scoring Engine",
+      "nameZh": "评分引擎",
+      "stage": "Build",
+      "progress": 35,
+      "owner": "Jason",
+      "updatedAt": "2026-03-01",
+      "strategy": "Cross-Asset Ranking",
+      "score": 64
+    }
   ],
   "gantt": [
-    { "name": "Governance & Risk Framework", "nameZh": "治理与风控框架", "start": "2026-02-26", "end": "2026-03-05", "progress": 92, "status": "in_progress" },
-    { "name": "QC Pipeline Automation", "nameZh": "QC 流水线自动化", "start": "2026-02-27", "end": "2026-03-06", "progress": 90, "status": "in_progress" },
-    { "name": "Strategy Search Engine", "nameZh": "策略搜索引擎", "start": "2026-03-02", "end": "2026-03-12", "progress": 55, "status": "in_progress" },
-    { "name": "Scoring & Review System", "nameZh": "评分与审核系统", "start": "2026-03-03", "end": "2026-03-18", "progress": 35, "status": "risk" }
+    {
+      "name": "Governance & Risk Framework",
+      "nameZh": "治理与风控框架",
+      "start": "2026-02-26",
+      "end": "2026-03-05",
+      "progress": 92,
+      "status": "in_progress"
+    },
+    {
+      "name": "QC Pipeline Automation",
+      "nameZh": "QC 流水线自动化",
+      "start": "2026-02-27",
+      "end": "2026-03-06",
+      "progress": 90,
+      "status": "in_progress"
+    },
+    {
+      "name": "Strategy Search Engine",
+      "nameZh": "策略搜索引擎",
+      "start": "2026-03-02",
+      "end": "2026-03-12",
+      "progress": 55,
+      "status": "in_progress"
+    },
+    {
+      "name": "Scoring & Review System",
+      "nameZh": "评分与审核系统",
+      "start": "2026-03-03",
+      "end": "2026-03-18",
+      "progress": 35,
+      "status": "risk"
+    }
   ],
   "agents": [
     {
@@ -82,5 +142,6 @@
       "issueZh": "Walk-forward 样本窗口尚未冻结"
     }
   ],
-  "updatedAt": "2026-03-02T16:24:00Z"
+  "updatedAt": "2026-03-03T12:03:38Z",
+  "needConfirm": []
 }

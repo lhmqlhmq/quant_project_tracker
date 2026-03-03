@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quant Project Tracker</title>
-    <link rel="stylesheet" href="styles.css?v=20260302-4" />
+    <link rel="stylesheet" href="styles.css?v=20260303-1" />
   </head>
   <body>
     <header class="topbar">
@@ -12,6 +12,7 @@
         <div>
           <h1>Quant Project Tracker</h1>
           <p id="subtitle">Project tracking and dashboard (MVP)</p>
+          <p id="lastUpdated" class="last-updated">Last updated: -</p>
         </div>
         <div class="lang-switch" role="group" aria-label="Language switcher" title="Language">
           <button id="btnEn" class="lang-btn" type="button">EN</button>
@@ -27,19 +28,27 @@
       </section>
 
       <section class="card">
-        <h2 id="sectionProjects">Project List</h2>
-        <table>
-          <thead>
-            <tr>
-              <th id="thProject">Project</th>
-              <th id="thStage">Stage</th>
-              <th id="thProgress">Progress</th>
-              <th id="thOwner">Owner</th>
-              <th id="thUpdated">Updated</th>
-            </tr>
-          </thead>
-          <tbody id="projectTable"></tbody>
-        </table>
+        <div class="projects-split">
+          <div class="projects-main">
+            <h2 id="sectionProjects">Project List</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th id="thProject">Project</th>
+                  <th id="thStage">Stage</th>
+                  <th id="thProgress">Progress</th>
+                  <th id="thOwner">Owner</th>
+                  <th id="thUpdated">Updated</th>
+                </tr>
+              </thead>
+              <tbody id="projectTable"></tbody>
+            </table>
+          </div>
+          <aside class="projects-side">
+            <h3 id="sectionNeedConfirm">Items Requiring Jason's Confirmation</h3>
+            <ul id="needConfirmList"></ul>
+          </aside>
+        </div>
       </section>
 
       <section class="card">
@@ -59,6 +68,6 @@
     </main>
 
     <footer class="footer">v0.4 · bilingual + gantt + agent board</footer>
-    <script src="app.js?v=20260302-4"></script>
+    <script src="app.js?v=20260303-1"></script>
   </body>
 </html>
