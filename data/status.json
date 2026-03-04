@@ -10,9 +10,9 @@
       "name": "QC Pipeline",
       "nameZh": "QC 流水线",
       "stage": "MVP",
-      "progress": 90,
+      "progress": 92,
       "owner": "Jason",
-      "updatedAt": "2026-03-02",
+      "updatedAt": "2026-03-04",
       "strategy": "Volatility Capture",
       "score": 84
     },
@@ -20,9 +20,9 @@
       "name": "Strategy Search",
       "nameZh": "策略搜索",
       "stage": "Design",
-      "progress": 55,
+      "progress": 58,
       "owner": "Jason",
-      "updatedAt": "2026-03-02",
+      "updatedAt": "2026-03-04",
       "strategy": "Momentum Mix",
       "score": 72
     },
@@ -142,8 +142,17 @@
       "issueZh": "Walk-forward 样本窗口尚未冻结"
     }
   ],
-  "updatedAt": "2026-03-04T14:44:18Z",
-  "needConfirm": [],
+  "updatedAt": "2026-03-04T14:46:10Z",
+  "needConfirm": [
+    {
+      "en": "Confirm demo acceptance criteria for pixel-agents runtime link (minimum observable behaviors).",
+      "zh": "请确认 pixel-agents runtime 联动演示的验收标准（最少可观察行为）。"
+    },
+    {
+      "en": "Confirm whether to expose SPY 1H / last 6 months as default chart preset on homepage.",
+      "zh": "请确认是否将 SPY 1H / 过去六个月设为首页默认图表预设。"
+    }
+  ],
   "releasedFeatures": [
     {
       "en": "Bilingual switch (EN/中文)",
@@ -164,12 +173,12 @@
   ],
   "inProgressFeatures": [
     {
-      "en": "Backtest return band (P75/P25 + median)",
-      "zh": "回测收益率区间图（P75/P25 + 中线）"
+      "en": "Backtest return band (P75/P25 + median) with SPY 1H (last 6 months)",
+      "zh": "回测收益率区间图（P75/P25+中线），样本为 SPY 1H 过去六个月"
     },
     {
-      "en": "Pixel-agents runtime integration",
-      "zh": "Pixel-agents 运行时联动"
+      "en": "Pixel-agents runtime integration demo (state sync visible on UI)",
+      "zh": "Pixel-agents runtime 联动演示（状态同步可视化）"
     }
   ]
 }
