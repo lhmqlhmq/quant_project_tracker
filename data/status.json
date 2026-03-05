@@ -76,77 +76,96 @@
       "name": "Emma",
       "role": "Strategy Lifecycle & Release Orchestrator",
       "roleZh": "策略流程与发布总控官",
-      "now": "Lifecycle governance and release gates",
-      "nowZh": "生命周期治理与发布门禁",
-      "next": "Finalize DoD checklist and approval flow",
-      "nextZh": "完成 DoD 清单与审批流程固化",
-      "issue": "Approval gate definitions are not fully finalized",
-      "issueZh": "审批门禁定义尚未完全固化"
+      "now": "Release gate audit and acceptance checklist enforcement",
+      "nowZh": "发布门禁审计与验收清单强制执行",
+      "next": "Lock v1 runtime demo acceptance report and publish audit notes",
+      "nextZh": "锁定 v1 runtime 演示验收报告并发布审计说明",
+      "issue": "Cross-page update consistency checks were missing in prior daily runs",
+      "issueZh": "前几日缺少跨页面更新一致性检查，导致日更失效",
+      "lastUpdated": "2026-03-05"
     },
     {
       "name": "Anna",
       "role": "Volatility Signal Research & Strategy Design Lead",
       "roleZh": "波动信号研究与策略设计官",
-      "now": "Volatility-capture signal design",
-      "nowZh": "波动捕捉信号设计",
-      "next": "Narrow parameter search space",
-      "nextZh": "收敛参数搜索空间"
+      "now": "SPY 1H feature stability pass and parameter pruning",
+      "nowZh": "SPY 1H 特征稳定性复核与参数剪枝",
+      "next": "Freeze robust parameter subset for next backtest batch",
+      "nextZh": "冻结稳健参数子集用于下一轮回测",
+      "issue": "Signal drift under low-volatility regime still needs guardrails",
+      "issueZh": "低波动区间信号漂移仍需约束机制",
+      "lastUpdated": "2026-03-05"
     },
     {
       "name": "Lily",
       "role": "Market Regime Identification & Trade Permission Lead",
       "roleZh": "市场状态识别与交易许可官",
-      "now": "Market regime labeling logic",
-      "nowZh": "市场状态标签逻辑",
-      "next": "Output trade-permission policy",
-      "nextZh": "输出交易许可策略",
-      "issue": "Regime thresholds still need backtest confirmation",
-      "issueZh": "Regime 阈值仍需回测确认"
+      "now": "Regime threshold backtest validation rerun",
+      "nowZh": "Regime阈值回测验证重跑",
+      "next": "Publish regime-to-trade permission matrix v2",
+      "nextZh": "发布 Regime 到交易许可矩阵 v2",
+      "issue": "No blocker",
+      "issueZh": "当前无阻塞",
+      "lastUpdated": "2026-03-05"
     },
     {
       "name": "Nina",
       "role": "Execution & Transaction Cost Modeling Lead",
       "roleZh": "订单执行与交易成本建模官",
-      "now": "Execution cost baseline modeling",
-      "nowZh": "执行成本基线建模",
-      "next": "Run spread-only vs spread+slippage comparison",
-      "nextZh": "运行仅点差与点差+滑点对比"
+      "now": "Execution slippage model calibration (hourly)",
+      "nowZh": "执行滑点模型校准（小时级）",
+      "next": "Compare modeled vs realized execution cost on sample set",
+      "nextZh": "对比样本集“模型成本 vs 实际成本”",
+      "issue": "Need larger sample size for stable slippage confidence bands",
+      "issueZh": "滑点置信区间仍需更大样本量",
+      "lastUpdated": "2026-03-05"
     },
     {
       "name": "Sara",
       "role": "Leverage Control & Margin Risk Lead",
       "roleZh": "杠杆控制与保证金风险管理官",
-      "now": "Leverage and margin kill-switch rules",
-      "nowZh": "杠杆与保证金熔断规则",
-      "next": "Integrate drawdown-triggered deleveraging",
-      "nextZh": "接入回撤触发降杠杆"
+      "now": "Drawdown-triggered deleveraging simulation",
+      "nowZh": "回撤触发降杠杆模拟",
+      "next": "Integrate kill-switch thresholds into runtime policy",
+      "nextZh": "将熔断阈值接入运行时策略",
+      "issue": "No blocker",
+      "issueZh": "当前无阻塞",
+      "lastUpdated": "2026-03-05"
     },
     {
       "name": "Mia",
       "role": "Portfolio Allocation & Risk Budget Lead",
       "roleZh": "多策略组合与风险预算分配官",
-      "now": "Portfolio risk-budget allocation",
-      "nowZh": "组合风险预算分配",
-      "next": "Draft correlation-aware reweighting",
-      "nextZh": "起草相关性感知再配权"
+      "now": "Portfolio risk-budget rebalance prototype",
+      "nowZh": "组合风险预算再平衡原型",
+      "next": "Add correlation-aware budget caps by symbol cluster",
+      "nextZh": "按标的簇增加相关性预算上限",
+      "issue": "Cluster definitions need final review",
+      "issueZh": "分簇定义待最终复核",
+      "lastUpdated": "2026-03-05"
     },
     {
       "name": "Ella",
       "role": "Independent Validation & Anti-Overfitting Auditor",
       "roleZh": "独立验证与反过拟合审计官",
-      "now": "OOS and anti-overfitting validation",
-      "nowZh": "样本外与反过拟合验证",
-      "next": "Add walk-forward stability report",
-      "nextZh": "补充 walk-forward 稳定性报告",
-      "issue": "Walk-forward sample window is not frozen yet",
-      "issueZh": "Walk-forward 样本窗口尚未冻结"
+      "now": "Walk-forward validation template finalization",
+      "nowZh": "Walk-forward 验证模板定稿",
+      "next": "Publish anti-overfitting evidence pack v1",
+      "nextZh": "发布反过拟合证据包 v1",
+      "issue": "Historical split policy not fully frozen",
+      "issueZh": "历史切分策略尚未完全冻结",
+      "lastUpdated": "2026-03-05"
     }
   ],
-  "updatedAt": "2026-03-05T22:14:13Z",
+  "updatedAt": "2026-03-05T22:21:26Z",
   "needConfirm": [
     {
-      "en": "Confirm whether to pin problematic agents to top on mobile cards.",
-      "zh": "请确认手机端是否将有问题的Agent固定置顶。"
+      "en": "Confirm whether Emma's gate-audit checklist becomes mandatory before every daily page update.",
+      "zh": "请确认是否将 Emma 的门禁审计清单设为每日页面更新前的强制步骤。"
+    },
+    {
+      "en": "Confirm if 'No blocker' agents should be auto-collapsed on mobile to focus on risk cards.",
+      "zh": "请确认手机端是否自动折叠“无阻塞”Agent，以突出风险卡片。"
     }
   ],
   "releasedFeatures": [
