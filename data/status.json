@@ -10,9 +10,9 @@
       "name": "QC Pipeline",
       "nameZh": "QC 流水线",
       "stage": "MVP",
-      "progress": 92,
+      "progress": 93,
       "owner": "Jason",
-      "updatedAt": "2026-03-04",
+      "updatedAt": "2026-03-05",
       "strategy": "Volatility Capture",
       "score": 84
     },
@@ -20,9 +20,9 @@
       "name": "Strategy Search",
       "nameZh": "策略搜索",
       "stage": "Design",
-      "progress": 58,
+      "progress": 60,
       "owner": "Jason",
-      "updatedAt": "2026-03-04",
+      "updatedAt": "2026-03-05",
       "strategy": "Momentum Mix",
       "score": 72
     },
@@ -142,15 +142,11 @@
       "issueZh": "Walk-forward 样本窗口尚未冻结"
     }
   ],
-  "updatedAt": "2026-03-04T14:46:10Z",
+  "updatedAt": "2026-03-05T22:14:13Z",
   "needConfirm": [
     {
-      "en": "Confirm demo acceptance criteria for pixel-agents runtime link (minimum observable behaviors).",
-      "zh": "请确认 pixel-agents runtime 联动演示的验收标准（最少可观察行为）。"
-    },
-    {
-      "en": "Confirm whether to expose SPY 1H / last 6 months as default chart preset on homepage.",
-      "zh": "请确认是否将 SPY 1H / 过去六个月设为首页默认图表预设。"
+      "en": "Confirm whether to pin problematic agents to top on mobile cards.",
+      "zh": "请确认手机端是否将有问题的Agent固定置顶。"
     }
   ],
   "releasedFeatures": [
@@ -173,12 +169,12 @@
   ],
   "inProgressFeatures": [
     {
-      "en": "Backtest return band (P75/P25 + median) with SPY 1H (last 6 months)",
-      "zh": "回测收益率区间图（P75/P25+中线），样本为 SPY 1H 过去六个月"
+      "en": "Runtime demo: pixel-agent state sync (10s SLA) + issue highlight",
+      "zh": "Runtime演示：像素Agent状态10秒内同步+问题高亮"
     },
     {
-      "en": "Pixel-agents runtime integration demo (state sync visible on UI)",
-      "zh": "Pixel-agents runtime 联动演示（状态同步可视化）"
+      "en": "Backtest band chart uses multi-symbol average midline + P75/P25 envelope",
+      "zh": "回测区间图：多标的均值中线 + P75/P25 区间"
     }
   ]
 }
