@@ -1,12 +1,220 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=./projects/tracker-web/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quant Project Tracker</title>
-  </head>
-  <body>
-    <p>Redirecting to <a href="./projects/tracker-web/">tracker dashboard</a>...</p>
-  </body>
-</html>
+<!doctype html><html lang="zh-CN"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Progress Tracker</title><style>:root {
+  --bg: #0b1020;
+  --card: #141b33;
+  --text: #eaf0ff;
+  --muted: #97a4c3;
+  --accent: #45c3ff;
+  --ok: #45d483;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.topbar {
+  padding: 24px;
+  border-bottom: 1px solid #26314f;
+}
+.topbar-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.topbar h1 { margin: 0; font-size: 28px; }
+.topbar p { margin: 8px 0 0; color: var(--muted); }
+.last-updated { font-size: 12px; opacity: 0.95; }
+.lang-switch {
+  display: inline-flex;
+  gap: 8px;
+  background: #0f1630;
+  border: 1px solid #2e3b63;
+  border-radius: 10px;
+  padding: 4px;
+}
+.lang-btn {
+  min-width: 56px;
+  background: #101733;
+  color: #f3f7ff;
+  border: 1px solid #31406b;
+  border-radius: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
+}
+.lang-btn.active {
+  background: #1a2a52;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(69,195,255,0.35) inset;
+}
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 16px;
+  display: grid;
+  gap: 16px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid #26314f;
+  border-radius: 12px;
+  padding: 16px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: #101733;
+  border: 1px solid #26314f;
+  border-radius: 10px;
+  padding: 12px;
+}
+.metric .label { color: var(--muted); font-size: 12px; }
+.metric .value { font-size: 24px; font-weight: 700; margin-top: 4px; }
+.delivery-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.delivery-split ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+.delivery-split li { margin: 6px 0; }
+
+.projects-split {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .delivery-split { grid-template-columns: 1fr; }
+  .projects-split { grid-template-columns: 1fr; }
+}
+.projects-side {
+  background: #101733;
+  border: 1px solid #26314f;
+  border-radius: 10px;
+  padding: 12px;
+}
+.projects-side h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+.projects-side ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+.projects-side li { margin: 8px 0; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px; border-bottom: 1px solid #26314f; }
+.progress {
+  height: 8px;
+  background: #1f2a49;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--ok));
+}
+.gantt-board { display: grid; gap: 12px; }
+.gantt-row { display: grid; gap: 8px; }
+.gantt-meta { display: grid; gap: 4px; }
+.gantt-name { font-weight: 600; }
+.gantt-dates { color: var(--muted); font-size: 12px; }
+.gantt-timeline {
+  position: relative;
+  height: 20px;
+  background: #1f2a49;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.gantt-bar {
+  position: absolute;
+  top: 2px;
+  height: 16px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+}
+.gantt-bar.ok { background: linear-gradient(90deg, #4f8cff, #45d483); }
+.gantt-bar.risk { background: linear-gradient(90deg, #f5a524, #ff6b6b); }
+.gantt-bar.blocked { background: linear-gradient(90deg, #ef4444, #b91c1c); }
+
+.agent-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.agent-card {
+  background: #101733;
+  border: 1px solid #26314f;
+  border-radius: 10px;
+  padding: 10px;
+}
+.agent-card.has-issue {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 1px rgba(255,107,107,0.2) inset;
+}
+.agent-card .name { font-weight: 700; margin-bottom: 6px; }
+.agent-card .line { color: var(--muted); font-size: 13px; margin: 3px 0; }
+.agent-card .line.issue { color: #ffb3b3; }
+.footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px;
+}
+/* MultiStrat integration */
+a { color: var(--accent); }
+.pass { color: var(--ok); }
+.fail { color: #ffb3b3; }
+.label { color: var(--muted); font-size: 13px; }
+.table-scroll { overflow-x: auto; min-width: 0; }
+#summary { line-height: 1.6; }
+#taskBoard td { vertical-align: top; }
+
+.agent-status { display: inline-block; padding: 4px 8px; margin-bottom: 8px; border-radius: 6px; background: #26314f; font-size: 12px; }
+.status-blocked { color: #ffb3b3; }
+.status-in_progress { color: var(--accent); }
+.status-done { color: var(--ok); }
+</style>
+<header class="topbar"><div class="topbar-row"><h1 id="title"></h1><div class="lang-switch">
+<button id="zh" class="lang-btn">中文</button><button id="en" class="lang-btn">EN</button></div></div></header>
+<main class="container"><section class="card"><p id="notice"></p><div id="progress"></div></section>
+<section class="card"><h2 id="tasksTitle"></h2><div id="tasks"></div></section>
+<section class="card"><h2 id="agentsTitle"></h2><div id="agents" class="agent-board"></div></section></main>
+<footer class="footer">quant_project_tracker · MIT</footer>
+<script>const snapshot={"title": "Project Progress Tracker", "tasks": [{"id": "baseline", "labels": {"en": "Baseline preparation", "zh": "基线准备"}, "status": "done"}, {"id": "reproduce", "labels": {"en": "Baseline reproduction", "zh": "基线复现"}, "status": "blocked"}, {"id": "signals", "labels": {"en": "Signal diagnostics", "zh": "信号诊断"}, "status": "todo"}, {"id": "risk", "labels": {"en": "Risk review", "zh": "风控审核"}, "status": "todo"}, {"id": "rsi", "labels": {"en": "Strategy behavior review", "zh": "策略行为审核"}, "status": "todo"}, {"id": "bridge", "labels": {"en": "Integration", "zh": "项目集成"}, "status": "todo"}, {"id": "validation", "labels": {"en": "Independent validation", "zh": "独立验证"}, "status": "todo"}, {"id": "paper", "labels": {"en": "Simulation readiness", "zh": "模拟准备"}, "status": "todo"}, {"id": "operations", "labels": {"en": "Operations review", "zh": "运维审核"}, "status": "todo"}], "agents": [{"id": "coordination", "labels": {"en": "Coordination", "zh": "项目协调"}, "status": "unassigned", "taskIds": ["baseline", "reproduce"]}, {"id": "research", "labels": {"en": "Research", "zh": "策略研究"}, "status": "unassigned", "taskIds": ["signals", "rsi"]}, {"id": "risk", "labels": {"en": "Risk review", "zh": "风控审核"}, "status": "unassigned", "taskIds": ["risk"]}, {"id": "engineering", "labels": {"en": "Engineering", "zh": "工程集成"}, "status": "unassigned", "taskIds": ["bridge"]}, {"id": "validation", "labels": {"en": "Validation", "zh": "独立验证"}, "status": "unassigned", "taskIds": ["validation"]}, {"id": "paper", "labels": {"en": "Simulation", "zh": "模拟跟踪"}, "status": "unassigned", "taskIds": ["paper"]}, {"id": "operations", "labels": {"en": "Operations", "zh": "研究运维"}, "status": "unassigned", "taskIds": ["operations"]}]};
+const statuses={zh:{done:'完成',todo:'待办',in_progress:'进行中',blocked:'阻塞',unassigned:'未分配',idle:'待命',unknown:'待核实'},en:{done:'Done',todo:'Todo',in_progress:'In progress',blocked:'Blocked',unassigned:'Unassigned',idle:'Idle',unknown:'Needs verification'}};
+const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function render(lang){
+ document.documentElement.lang=lang==='zh'?'zh-CN':'en';
+ document.getElementById('title').textContent=snapshot.title;
+ document.getElementById('notice').textContent=lang==='zh'?'公开精简版：只包含选定工作包和角色状态；不表示实时运行或项目最终验收。':'Public summary: selected work packages and role statuses only; not live agent monitoring or final project acceptance.';
+ const done=snapshot.tasks.filter(t=>t.status==='done').length;
+ document.getElementById('progress').textContent=`${done}/${snapshot.tasks.length} · ${lang==='zh'?'工作包完成':'work packages completed'}`;
+ document.getElementById('tasksTitle').textContent=lang==='zh'?'项目进度':'Project progress';
+ document.getElementById('agentsTitle').textContent=lang==='zh'?'Agent 角色与状态':'Agent roles and status';
+ document.getElementById('tasks').innerHTML=snapshot.tasks.map(t=>`<p id="task-${escape(t.id)}">${escape(t.labels[lang])} · ${statuses[lang][t.status]}</p>`).join('');
+ document.getElementById('agents').innerHTML=snapshot.agents.map(a=>`<div class="agent-card ${a.status==='blocked'?'has-issue':''}"><div class="name">${escape(a.labels[lang])}</div><p>${statuses[lang][a.status]}</p><p>${a.taskIds.map(id=>`<a href="#task-${escape(id)}">${escape(snapshot.tasks.find(t=>t.id===id).labels[lang])}</a>`).join(' · ')}</p></div>`).join('');
+}
+document.getElementById('zh').addEventListener('click',()=>render('zh'));
+document.getElementById('en').addEventListener('click',()=>render('en'));render('zh');
+</script></html>
