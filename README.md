@@ -1,35 +1,9 @@
-# quant_project_tracker
+# MultiStrat Cloud project progress
 
-Project Tracker + Dashboard MVP for quant research workflow.
+Public current-project summary. Only approved work and role records from 2026-10-06 onward are included. Original tracker demo data and scripts have been removed from the current branch.
 
-## Execution policy
-- Agent coding runtime: **Codex only**
-- ClaudeCode path: disabled for this project
+https://lhmqlhmq.github.io/quant_project_tracker/
 
-## Current MVP (v0.2)
-- Bilingual static dashboard (EN / 中文)
-- Core metrics cards
-- Project tracking table
-- High-priority todo list
+Legacy web paths redirect to the current summary. Source project remains private. This repository contains no trading research evidence or private source code.
 
-## Project structure
-- `projects/tracker-web/` → current tracker dashboard app
-
-## Run locally
-Open `projects/tracker-web/index.html` directly in browser, or run a simple static server from repo root:
-
-```bash
-python3 -m http.server 8080
-# then open http://localhost:8080/projects/tracker-web/
-```
-
-## Data link (for quant workflow)
-- Dashboard data source: `data/status.json`
-- Tracker web reads: `../../data/status.json`
-- You can update this JSON from your quant pipeline to refresh project status.
-
-## Next planned features
-- Strategy score breakdown (return, drawdown, stability)
-- Backtest history timeline
-- Filters: strategy family, date range, market regime
-- Export: CSV / snapshot report
+Based on quant_project_tracker, MIT license.

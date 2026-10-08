@@ -1,21 +1,17 @@
-# Public summary release: 98187cc199e9d8b7b42b889e7da1511066328893
+# Public repository main workflow template; artifact branch stays static.
 name: Deploy GitHub Pages
-
 on:
   push:
-    branches: ["main"]
-    paths: [".github/workflows/pages.yml"]
+    branches: [main]
+    paths: ['.github/workflows/pages.yml']
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: pages
   cancel-in-progress: true
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -30,9 +26,34 @@ jobs:
       - name: Prepare public summary only
         run: |
           mkdir -p _site
-          cp index.html LICENSE .nojekyll _site/
+          cp -a index.html LICENSE .nojekyll projects web _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
       - uses: actions/deploy-pages@v4
         id: deployment
+      - name: Verify published current-project pages
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          python - <<'PYVERIFY'
+          import os, time, urllib.request
+          base = os.environ['SITE_URL'].rstrip('/') + '/'
+          forbidden = ['今日回测次数', 'Runtime演示', '策略搜索引擎', '2026年3月5日', '平均夏普', 'QC 流水线']
+          for attempt in range(12):
+              try:
+                  for path in ['', 'projects/tracker-web/', 'web/']:
+                      with urllib.request.urlopen(base + path + '?release=' + os.environ['GITHUB_SHA'], timeout=20) as response:
+                          content = response.read().decode('utf-8')
+                      assert not any(marker in content for marker in forbidden), path
+                      if not path:
+                          assert 'multistrat-cloud-2026-10-06' in content
+                      else:
+                          assert 'location.replace' in content and 'MultiStrat Cloud' in content
+                      print('Verified live page:', path or '/')
+                  break
+              except Exception:
+                  if attempt == 11:
+                      raise
+                  time.sleep(10)
+          PYVERIFY

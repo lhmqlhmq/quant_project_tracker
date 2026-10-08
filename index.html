@@ -1,12 +1,221 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=./projects/tracker-web/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quant Project Tracker</title>
-  </head>
-  <body>
-    <p>Redirecting to <a href="./projects/tracker-web/">tracker dashboard</a>...</p>
-  </body>
-</html>
+<!doctype html><html lang="zh-CN"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MultiStrat Cloud · Project Progress</title><style>:root {
+  --bg: #0b1020;
+  --card: #141b33;
+  --text: #eaf0ff;
+  --muted: #97a4c3;
+  --accent: #45c3ff;
+  --ok: #45d483;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+.topbar {
+  padding: 24px;
+  border-bottom: 1px solid #26314f;
+}
+.topbar-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.topbar h1 { margin: 0; font-size: 28px; }
+.topbar p { margin: 8px 0 0; color: var(--muted); }
+.last-updated { font-size: 12px; opacity: 0.95; }
+.lang-switch {
+  display: inline-flex;
+  gap: 8px;
+  background: #0f1630;
+  border: 1px solid #2e3b63;
+  border-radius: 10px;
+  padding: 4px;
+}
+.lang-btn {
+  min-width: 56px;
+  background: #101733;
+  color: #f3f7ff;
+  border: 1px solid #31406b;
+  border-radius: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
+}
+.lang-btn.active {
+  background: #1a2a52;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(69,195,255,0.35) inset;
+}
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 16px;
+  display: grid;
+  gap: 16px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid #26314f;
+  border-radius: 12px;
+  padding: 16px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.metric {
+  background: #101733;
+  border: 1px solid #26314f;
+  border-radius: 10px;
+  padding: 12px;
+}
+.metric .label { color: var(--muted); font-size: 12px; }
+.metric .value { font-size: 24px; font-weight: 700; margin-top: 4px; }
+.delivery-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.delivery-split ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+.delivery-split li { margin: 6px 0; }
+
+.projects-split {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .delivery-split { grid-template-columns: 1fr; }
+  .projects-split { grid-template-columns: 1fr; }
+}
+.projects-side {
+  background: #101733;
+  border: 1px solid #26314f;
+  border-radius: 10px;
+  padding: 12px;
+}
+.projects-side h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+.projects-side ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+.projects-side li { margin: 8px 0; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px; border-bottom: 1px solid #26314f; }
+.progress {
+  height: 8px;
+  background: #1f2a49;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--ok));
+}
+.gantt-board { display: grid; gap: 12px; }
+.gantt-row { display: grid; gap: 8px; }
+.gantt-meta { display: grid; gap: 4px; }
+.gantt-name { font-weight: 600; }
+.gantt-dates { color: var(--muted); font-size: 12px; }
+.gantt-timeline {
+  position: relative;
+  height: 20px;
+  background: #1f2a49;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.gantt-bar {
+  position: absolute;
+  top: 2px;
+  height: 16px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+}
+.gantt-bar.ok { background: linear-gradient(90deg, #4f8cff, #45d483); }
+.gantt-bar.risk { background: linear-gradient(90deg, #f5a524, #ff6b6b); }
+.gantt-bar.blocked { background: linear-gradient(90deg, #ef4444, #b91c1c); }
+
+.agent-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.agent-card {
+  background: #101733;
+  border: 1px solid #26314f;
+  border-radius: 10px;
+  padding: 10px;
+}
+.agent-card.has-issue {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 1px rgba(255,107,107,0.2) inset;
+}
+.agent-card .name { font-weight: 700; margin-bottom: 6px; }
+.agent-card .line { color: var(--muted); font-size: 13px; margin: 3px 0; }
+.agent-card .line.issue { color: #ffb3b3; }
+.footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px;
+}
+/* MultiStrat integration */
+a { color: var(--accent); }
+.pass { color: var(--ok); }
+.fail { color: #ffb3b3; }
+.label { color: var(--muted); font-size: 13px; }
+.table-scroll { overflow-x: auto; min-width: 0; }
+#summary { line-height: 1.6; }
+#taskBoard td { vertical-align: top; }
+
+.agent-status { display: inline-block; padding: 4px 8px; margin-bottom: 8px; border-radius: 6px; background: #26314f; font-size: 12px; }
+.status-blocked { color: #ffb3b3; }
+.status-in_progress { color: var(--accent); }
+.status-done { color: var(--ok); }
+</style>
+<header class="topbar"><div class="topbar-row"><h1 id="title"></h1><div class="lang-switch">
+<button id="zh" class="lang-btn">中文</button><button id="en" class="lang-btn">EN</button></div></div></header>
+<main class="container"><section class="card"><p id="notice"></p><div id="progress"></div></section>
+<section class="card"><h2 id="tasksTitle"></h2><div id="tasks"></div></section>
+<section class="card"><h2 id="agentsTitle"></h2><div id="agents" class="agent-board"></div></section></main>
+<footer class="footer">quant_project_tracker · MIT</footer>
+<script>const snapshot={"title": "MultiStrat Cloud · Project Progress", "projectKey": "multistrat-cloud-2026-10-06", "startedAt": "2026-10-06", "updatedAt": "2026-10-08", "tasks": [{"id": "cloud-dashboard", "labels": {"en": "Integrate project dashboard", "zh": "整合项目看板"}, "status": "done"}, {"id": "cloud-pages", "labels": {"en": "Publish public dashboard", "zh": "发布公开看板"}, "status": "done"}, {"id": "cloud-agent-alignment", "labels": {"en": "Align four project Agent roles", "zh": "对齐四个项目 Agent 角色"}, "status": "done"}, {"id": "cloud-role-verification", "labels": {"en": "Verify native roles in cloud", "zh": "核实云端原生角色加载"}, "status": "todo"}, {"id": "cloud-data-isolation", "labels": {"en": "Restrict dashboard to current cloud project", "zh": "限定看板只展示当前云项目"}, "status": "done"}], "agents": [{"id": "coordinator", "labels": {"en": "Emma · Coordinator and requirements owner", "zh": "Emma（艾玛）· 主协调与需求负责人", "scopeEn": "Clarify requirements, define acceptance, route work, consolidate findings and schedule cloud operations.", "scopeZh": "澄清需求、定义验收、路由任务、汇总审核、统一安排云操作。"}, "status": "unknown", "taskIds": ["cloud-dashboard", "cloud-pages", "cloud-agent-alignment", "cloud-role-verification", "cloud-data-isolation"]}, {"id": "implementer", "labels": {"en": "Ethan · Code implementation and fixes", "zh": "Ethan（伊森）· 代码实现与修复", "scopeEn": "Modify assigned files, run relevant verification and fix independent reviewer findings; no cloud operations or release approval.", "scopeZh": "修改分配文件、验证实现、修复独立审核问题；不自行运行云回测或批准上线。"}, "status": "unknown", "taskIds": ["cloud-role-verification"]}, {"id": "code_reviewer", "labels": {"en": "Liam · Independent code review", "zh": "Liam（利亚姆）· 独立代码审核", "scopeEn": "Read-only requirements, logic, interfaces, edge cases, bugs and regression review of a fixed version.", "scopeZh": "只读审核固定版本的需求符合性、逻辑、接口、边界、bug 与回归风险。"}, "status": "unknown", "taskIds": ["cloud-role-verification"]}, {"id": "research_validator", "labels": {"en": "Ella · Research risk and validation", "zh": "Ella（艾拉）· 研究风险与验证", "scopeEn": "Read-only causality/future-data leakage, overfitting, costs, risk constraints and evidence review; cannot approve Paper/Live.", "scopeZh": "只读检查未来数据泄漏、因果性、过拟合、成本、风险约束与证据；不批准 Paper/Live。"}, "status": "unknown", "taskIds": ["cloud-role-verification"]}]};
+const statuses={zh:{done:'完成',todo:'待办',in_progress:'进行中',blocked:'阻塞',unassigned:'未分配',idle:'待命',unknown:'待核实'},en:{done:'Done',todo:'Todo',in_progress:'In progress',blocked:'Blocked',unassigned:'Unassigned',idle:'Idle',unknown:'Needs verification'}};
+const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function render(lang){
+ document.documentElement.lang=lang==='zh'?'zh-CN':'en';
+ document.getElementById('title').textContent=snapshot.title;
+ document.getElementById('notice').textContent=lang==='zh'?'当前云项目：仅显示本项目开始后的工作包与角色状态；不代表整个交易系统的完成率或实时 Agent 运行。':'Current cloud project: only work packages and role records since this project started; not total trading-system completion or live Agent monitoring.';
+ document.getElementById('notice').textContent+=` (${snapshot.startedAt} → ${snapshot.updatedAt})`;
+ const done=snapshot.tasks.filter(t=>t.status==='done').length;
+ document.getElementById('progress').textContent=`${done}/${snapshot.tasks.length} · ${lang==='zh'?'工作包完成':'work packages completed'}`;
+ document.getElementById('tasksTitle').textContent=lang==='zh'?'项目进度':'Project progress';
+ document.getElementById('agentsTitle').textContent=lang==='zh'?'Agent 角色与状态':'Agent roles and status';
+ document.getElementById('tasks').innerHTML=snapshot.tasks.map(t=>`<p id="task-${escape(t.id)}">${escape(t.labels[lang])} · ${statuses[lang][t.status]}</p>`).join('');
+ document.getElementById('agents').innerHTML=snapshot.agents.map(a=>`<div class="agent-card ${a.status==='blocked'?'has-issue':''}"><div class="name">${escape(a.labels[lang])}</div><p class="line">${escape(a.labels[lang === 'zh' ? 'scopeZh' : 'scopeEn'] || '')}</p><p>${statuses[lang][a.status]}</p><p>${a.taskIds.map(id=>`<a href="#task-${escape(id)}">${escape(snapshot.tasks.find(t=>t.id===id).labels[lang])}</a>`).join(' · ')}</p></div>`).join('');
+}
+document.getElementById('zh').addEventListener('click',()=>render('zh'));
+document.getElementById('en').addEventListener('click',()=>render('en'));render('zh');
+</script></html>
