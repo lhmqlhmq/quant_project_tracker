@@ -1,7 +1,7 @@
-# MultiStrat current-project console
+# MultiStrat current project workspace
 
-Single publication source: main. Only current project records since 2026-10-06 are allowed. Console v3 is validated before publishing and exact deployed bytes are checked after publishing. No demo data, fallback renderer, or legacy design is present. Old URLs only redirect.
+The sole console design comes from the current dashboard/ workspace in the private project development branch. Only allowlisted project backlog records from 2026-10-06 onward are exported. Source update time is distinct from publication time; no live Agent activity or trading state is claimed.
 
 https://lhmqlhmq.github.io/quant_project_tracker/
 
-The private project source and research evidence are not published.
+Public main is the only publication source. Legacy sources, summary renderer and retired branch dashboards are removed. Workflow rejects obsolete versions and unexpected files, then verifies exact deployed bytes.
