@@ -1,9 +1,7 @@
-# MultiStrat Cloud project progress
+# MultiStrat current-project console
 
-Public current-project summary. Only approved work and role records from 2026-10-06 onward are included. Original tracker demo data and scripts have been removed from the current branch.
+Single publication source: main. Only current project records since 2026-10-06 are allowed. Console v3 is validated before publishing and exact deployed bytes are checked after publishing. No demo data, fallback renderer, or legacy design is present. Old URLs only redirect.
 
 https://lhmqlhmq.github.io/quant_project_tracker/
 
-Legacy web paths redirect to the current summary. Source project remains private. This repository contains no trading research evidence or private source code.
-
-Based on quant_project_tracker, MIT license.
+The private project source and research evidence are not published.
